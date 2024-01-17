@@ -33,6 +33,7 @@ dependencies:
   
   flutter_native_splash: ^2.3.9
   cupertino_icons: ^1.0.2
+  country_picker: ^2.0.23
 
 flutter_native_splash:
   color: "#FFFFFF"
