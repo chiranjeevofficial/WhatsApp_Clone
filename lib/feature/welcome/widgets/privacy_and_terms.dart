@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_messanger/common/extension/custom_theme_extension.dart';
-import 'package:whatsapp_messanger/common/utils/coloors.dart';
 
 class PrivacyAndTerms extends StatelessWidget {
   const PrivacyAndTerms({super.key});
@@ -28,7 +27,7 @@ class PrivacyAndTerms extends StatelessWidget {
               ),
             ),
             const TextSpan(
-              text: 'Tap "Agre and continue" to accept the ',
+              text: ' Tap "Agre and continue" to accept the ',
             ),
             TextSpan(
               text: 'Terms of Services.',

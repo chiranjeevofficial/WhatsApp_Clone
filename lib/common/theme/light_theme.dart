@@ -9,7 +9,7 @@ ThemeData lightTheme() {
       background: Coloors.backgroundLight,
     ),
     extensions: [
-      CustomThemeExtension.darkMode,
+      CustomThemeExtension.lightMode,
     ],
     scaffoldBackgroundColor: Coloors.backgroundLight,
     elevatedButtonTheme: ElevatedButtonThemeData(
