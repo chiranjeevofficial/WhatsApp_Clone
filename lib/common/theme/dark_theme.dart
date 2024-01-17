@@ -8,9 +8,11 @@ ThemeData darkTheme() {
     colorScheme: base.colorScheme.copyWith(
       background: Coloors.backgroundDark,
     ),
+    
     extensions: [
       CustomThemeExtension.darkMode,
     ],
+
     scaffoldBackgroundColor: Coloors.backgroundDark,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -20,6 +22,16 @@ ThemeData darkTheme() {
         elevation: 0,
         shadowColor: Colors.transparent,
       )
+    ),
+
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: Coloors.greyBackground,
+      modalBackgroundColor: Coloors.greyBackground,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
     ),
   );
 }
