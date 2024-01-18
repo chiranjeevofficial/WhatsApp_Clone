@@ -5,24 +5,25 @@ import 'package:whatsapp_messanger/common/utils/coloors.dart';
 
 ThemeData lightTheme() {
   final ThemeData base = ThemeData.light();
-  return base.copyWith(    
+  return base.copyWith(
     colorScheme: base.colorScheme.copyWith(
       background: Coloors.backgroundLight,
     ),
-
+    
     extensions: [
       CustomThemeExtension.lightMode,
     ],
     
     scaffoldBackgroundColor: Coloors.backgroundLight,
-
+    
     appBarTheme: const AppBarTheme(
+      titleTextStyle: TextStyle(fontSize: 18),
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark,
       )
     ),
-
+    
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: Coloors.greenLight,
@@ -32,7 +33,7 @@ ThemeData lightTheme() {
         shadowColor: Colors.transparent,
       )
     ),
-
+    
     bottomSheetTheme: const BottomSheetThemeData(
       backgroundColor: Coloors.backgroundLight,
       modalBackgroundColor: Coloors.backgroundLight,
@@ -40,6 +41,14 @@ ThemeData lightTheme() {
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(20),
         ),
+      ),
+    ),
+    
+    dialogBackgroundColor: Coloors.backgroundLight,
+    
+    dialogTheme: DialogTheme(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
       ),
     ),
   );

@@ -1,5 +1,6 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:whatsapp_messanger/common/helper/show_alert_dailog.dart';
 import 'package:whatsapp_messanger/common/utils/coloors.dart';
 import 'package:whatsapp_messanger/common/extension/custom_theme_extension.dart';
 import 'package:whatsapp_messanger/common/widgets/custom_elevated_button.dart';
@@ -17,6 +18,28 @@ class _LoginPageState extends State<LoginPage> {
   late TextEditingController countryNameController;
   late TextEditingController countryCodeController;
   late TextEditingController phoneNumberController;
+
+  sendCodeToPhone() {
+    final phone = phoneNumberController.text;
+    final name = countryNameController.text;
+
+    if (phone.isEmpty) {
+      return showAlertDailog(
+        context: context,
+        message: 'Please enter your phone number',
+      );
+    } else if (phone.length < 9) {
+      return showAlertDailog(
+          context: context,
+          message:
+              'The phone number you entered is too short for the country: $name.\n\nInclude your country code if you haven\'t.');
+    } else if (phone.length > 10) {
+      return showAlertDailog(
+        context: context,
+        message: 'The phone number you entered is too long for the country: $name.'
+      );
+    }
+  }
 
   showCountryCodePicker() {
     showCountryPicker(
@@ -62,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     countryNameController = TextEditingController(text: 'India');
     countryCodeController = TextEditingController(text: '91');
-    phoneNumberController = TextEditingController(text: '7983 499 388');
+    phoneNumberController = TextEditingController(text: '');
     super.initState();
   }
 
@@ -159,7 +182,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: CustomElevatedButton(
-        onPressed: () {},
+        onPressed: sendCodeToPhone,
         text: 'NEXT',
         buttonWidth: 90,
       ),
