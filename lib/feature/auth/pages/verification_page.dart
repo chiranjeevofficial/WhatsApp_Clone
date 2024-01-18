@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_messanger/common/extension/custom_theme_extension.dart';
 import 'package:whatsapp_messanger/common/widgets/custom_icon_button.dart';
+import 'package:whatsapp_messanger/feature/auth/controller/auth_controller.dart';
 import 'package:whatsapp_messanger/feature/auth/widgets/custom_text_field.dart';
 
-class VerificatonPage extends StatefulWidget {
-  const VerificatonPage({super.key});
+class VerificatonPage extends ConsumerWidget {
+  const VerificatonPage({
+    super.key,
+    required this.smsCodeId,
+    required this.phoneNumber,
+  });
 
-  @override
-  State<VerificatonPage> createState() => _VerificatonPageState();
-}
+  final String smsCodeId;
+  final String phoneNumber;
 
-class _VerificatonPageState extends State<VerificatonPage> {
-  late TextEditingController codeController;
-
-  @override
-  void initState() {
-    codeController = TextEditingController();
-    super.initState();
+  void verifySmsCode(BuildContext context, WidgetRef ref, String smsCode) {
+    ref.read(authControllerProvider).verifySmsCode(
+        context: context,
+        smsCodeId: smsCodeId,
+        smsCode: smsCode,
+        mounted: true);
   }
 
   @override
-  void dispose() {
-    codeController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
@@ -70,12 +68,15 @@ class _VerificatonPageState extends State<VerificatonPage> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 80),
               child: CustomTextField(
-                controller: codeController,
                 hintText: '- - -  - - -',
                 fontSize: 30,
                 autoFocus: true,
                 keyboardType: TextInputType.number,
-                onChanged: (value) {},
+                onChanged: (value) {
+                  if (value.length == 6) {
+                    return verifySmsCode(context, ref, value);
+                  }
+                },
               ),
             ),
             const SizedBox(height: 20),

@@ -1,13 +1,23 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:whatsapp_messanger/common/routes/routes.dart';
 import 'package:whatsapp_messanger/common/theme/dark_theme.dart';
 import 'package:whatsapp_messanger/common/theme/light_theme.dart';
-import 'package:whatsapp_messanger/feature/auth/pages/user_info_page.dart';
-// import 'package:whatsapp_messanger/feature/auth/pages/verification_page.dart';
-// import 'package:whatsapp_messanger/feature/auth/pages/login_page.dart';
-// import 'package:whatsapp_messanger/feature/welcome/pages/welcome_page.dart';
+import 'package:whatsapp_messanger/feature/welcome/pages/welcome_page.dart';
+import 'package:whatsapp_messanger/firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  // runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +31,8 @@ class MyApp extends StatelessWidget {
       theme: lightTheme(),
       darkTheme: darkTheme(),
       themeMode: ThemeMode.system,
-      home: const UserInfoPage(),
+      home: const WelcomePage(),
+      onGenerateRoute: Routes.onGenerateRoute,
     );
   }
 }
